@@ -8,25 +8,35 @@ export const bar = (selection, props) => {
    yValue,
    title,
    xAxisLabel,
-   yAxisLabel
+   yAxisLabel,
+   wine_type,
+   titleLabel
  } = props;
+  
+  //filtering by wine type
+  let filtered_data;
+  if (wine_type === 'White Wine') {
+    filtered_data = data.filter(d => d.wine_type === 'white')
+  } else {
+      filtered_data = data.filter(d => d.wine_type === 'red')
+    }
   
   //setting size of chart element
   const innerWidth = width - margin.left - margin.right;
   const innerHeight = height - margin.top - margin.bottom;
   
   //sort bars via quality ranking
-  data.sort(function(b, a) {
+  filtered_data.sort(function(b, a) {
     return b.quality - a.quality;
   });
   
   //defining scales
   const yScale = d3.scaleLinear()
-  	.domain([0,d3.max(data, yValue)])
+  	.domain([0,d3.max(filtered_data, yValue)])
   	.range([innerHeight,0])
   	.nice();
   const xScale = d3.scaleBand()
-  	.domain(data.map(xValue))
+  	.domain(filtered_data.map(xValue))
   	.range([0,innerWidth])
   	.padding(0.05);
   
@@ -91,15 +101,26 @@ export const bar = (selection, props) => {
       .text(xAxisLabel);
   
   //creating vis title
-  gEnter.append('text')
+  const titleG = g.select('.title');
+  const titleGEnter = gEnter
+		.append('g')
+  		.attr('class', 'title');
+  titleG
+  	.merge(titleGEnter)
+  	.transition().duration(1000)
+        
+  const titleText = titleGEnter
+		.append('text')
       .attr('class', 'title')
       .attr('y', -30)
   		.attr('x', 80)
-      .text(title);
+  	.merge(titleG.select('.title'))
+      .text(titleLabel);
   
 const rect = g.merge(gEnter)
-  	.selectAll('rect').data(data)
-  rect.enter().append('rect')
+  	.selectAll('rect').data(filtered_data);
+  rect
+    .enter().append('rect')
   	.merge(rect)
   		.transition().duration(1000)
 			.attr('x', d =>xScale(xValue(d)))
