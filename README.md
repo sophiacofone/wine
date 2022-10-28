@@ -6,5 +6,6 @@ The graph uses data from the UCI Machine Learning Repository - [Wine Quality](ht
 
 ## Interactive Bar Chart
 Click on the dropdown menu to select an attribute! [Bar Chart](https://sophiacofone.github.io/wine/).
-![image of bar chart](bar_chart.png)
+
+![image of bar chart](extra/bar_chart.png)
 
