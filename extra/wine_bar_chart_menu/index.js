@@ -7,7 +7,7 @@ const width = +svg.attr('width');
 const height = +svg.attr('height');
       
 
-// let data;
+let data;
 
 let yColumn;
 let wine_type;
