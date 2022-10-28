@@ -8,7 +8,7 @@ rect {
 }
 
 text {
-  font-family: sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 .tick text {
@@ -17,20 +17,15 @@ text {
 }
 
 .tick line {
-  stroke: #C0C0BB;
+  stroke: #635F5D;
 }
 
 .axis-label {
   font-size: 1.5em;
-  fill: #8E8883;
+  fill: #635F5D;
 }
 
 .title {
   font-size: 1.4em;
   fill: #635F5D;
 }
-
-
-/* .y-axis {
-	opacity: 0
-} */

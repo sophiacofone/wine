@@ -7,7 +7,7 @@ const width = +svg.attr('width');
 const height = +svg.attr('height');
       
 
-let data;
+// let data;
 
 let yColumn;
 let wine_type;
@@ -68,7 +68,7 @@ d3.csv('data_wine.csv').then(loadedData => {
       d.quality = +d.quality;
     	d.wine_type = d.wine_type;
   });
-  yColumn = data.columns[0]
+  yColumn = 'fixed_acidity'
   wine_type = 'White Wine'
   render();
 
